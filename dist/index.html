@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Recipes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
+</head>
+
+<body>
+  
+    <input type="text" id="input-recipes-ingredient" placeholder="look for recipes?" />
+    <button onclick="getRecipesByIngredient()" >Search!</button>
+
+    <div id="recipes"></div>
+
+    <script id="recipes-template" type="text/x-handlebars-template">
+        {{#each this}}
+            <div class="recipe mb-3">       
+                <h4>{{this.title}}</h4>
+                <img src="{{this.thumbnail}}">
+                <p>ID: {{this.idMeal}}</p>
+                <a href="{{this.href}}">Recipe Video</a>
+            </div>
+        {{/each}}
+    </script>
+    
+    
+    
+    
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.2/dist/handlebars.min.js"></script>
+<script src="main.js"></script>
+</body>
+
+</html>
