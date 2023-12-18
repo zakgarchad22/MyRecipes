@@ -9,9 +9,37 @@ const render = function(recipes) {
 
 const getRecipesByIngredient = function() {
     let ingredient = $("#input-recipes-ingredient").val()
-    $.get(`/recipes/ingredient/${ingredient}`, function(response) 
-    {
-    console.log(response);
-    render(response)
+    let dairyChecked = $("#dairy-checkbox").is(":checked")
+    let glutenChecked = $("#gluten-checkbox").is(":checked")
+
+    $.get(`/recipes/ingredient/${ingredient}`, function(response) {
+        const filteredRecipes = response.filter(recipe => {
+            if (dairyChecked && glutenChecked) 
+            {
+                return !recipe.hasDairy && !recipe.hasGluten
+            }
+            
+            else if (dairyChecked) 
+            {
+                return !recipe.hasDairy
+            }
+          
+            else if (glutenChecked) 
+            {
+                return !recipe.hasGluten
+            }
+            else 
+            {
+                return recipe
+            }
+        })
+
+        render(filteredRecipes)
     })
 }
+
+
+
+$('#recipes').on('click', '.list-group-item', function() {
+    $(this).toggleClass('red-background')
+})

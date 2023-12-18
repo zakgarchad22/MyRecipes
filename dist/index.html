@@ -8,26 +8,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 
 <body>
-  
-    <input type="text" id="input-recipes-ingredient" placeholder="look for recipes?" />
+    <div class="body">
+    <input value = "cheese" type="text" id="input-recipes-ingredient" placeholder="look for recipes?"  />
     <button onclick="getRecipesByIngredient()" >Search!</button>
-
+    <br>
+    <label><input type="checkbox" id ="dairy-checkbox">with out Dairy</label>
+    <br>
+    <label><input type="checkbox" id ="gluten-checkbox">with out Gluten</label>
     <div id="recipes"></div>
 
     <script id="recipes-template" type="text/x-handlebars-template">
         {{#each this}}
-            <div class="recipe mb-3">       
-                <h4>{{this.title}}</h4>
-                <img src="{{this.thumbnail}}">
-                <p>ID: {{this.idMeal}}</p>
-                <a href="{{this.href}}">Recipe Video</a>
+        <div class="card">
+            <p>ID: {{this.idMeal}}</p>
+            <h5 class="card-title">{{this.title}}</h5>
+            <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">
+
+            <div class="card-body">   
+                <ul class="list-group list-group-horizontal">
+                    {{#each this.ingredients}}
+                    <li class="list-group-item">{{this}}</li>
+                    {{/each}}
             </div>
+
+            <div class="card-footer">
+                <a href="{{this.href}}" class="card-link">Recipe Video</a>
+            </div>
+        </div>
         {{/each}}
+
+
     </script>
+    
+    
+</div>
+    
     
     
     
