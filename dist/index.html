@@ -13,37 +13,82 @@
 </head>
 
 <body>
-    <div class="body">
-    <input value = "cheese" type="text" id="input-recipes-ingredient" placeholder="look for recipes?"  />
-    <button onclick="getRecipesByIngredient()" >Search!</button>
-    <br>
-    <label><input type="checkbox" id ="dairy-checkbox">with out Dairy</label>
-    <br>
-    <label><input type="checkbox" id ="gluten-checkbox">with out Gluten</label>
-    <div id="recipes"></div>
+    
+<div class="container mt-3">
 
-    <script id="recipes-template" type="text/x-handlebars-template">
-        {{#each this}}
-        <div class="card">
-            <p>ID: {{this.idMeal}}</p>
-            <h5 class="card-title">{{this.title}}</h5>
-            <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">
+    <h1 class="display-1">Search and Remember</h1>
 
-            <div class="card-body">   
+    <div class="body container mt-3">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="look for recipes?"  id="input-recipes-ingredient"  >
+            <button class="btn btn-outline-secondary"  onclick="controller.getRecipesByIngredient()">Search for Recipes</button>
+        </div>  
+    </div>    
+  
+    <div class="row justify-content-center">
+        <div class="col-auto form-check">
+            <input type="checkbox" class="form-check-input" id="dairy-checkbox">
+            <label class="form-check-label" for="dairy-checkbox">Without Dairy</label>
+        </div>
+        <div class="col-auto form-check">
+                <input type="checkbox" class="form-check-input" id="gluten-checkbox">
+                <label class="form-check-label" for="gluten-checkbox">Without Gluten</label>
+        </div>
+    </div>
+   
+    <div class="text-center mb-3"> 
+            <h3>Remember to Buy?</h3> 
+    </div>
+
+
+
+<div id="shoping"></div>
+<br><br>
+    
+
+<script id="shopping-list-template" type="text/x-handlebars-template">     
+    <ul class="shopping-list">
+        {{#each items}}
+            <li class="shopping-item">
+                {{this}}
+                <button class="delete-item" data-item="{{this}}">&#x2714;  </button>
+            </li>
+        {{/each}}
+    </ul>  
+</script>
+    
+    
+    
+<div id="recipes"></div>
+
+    
+<script id="recipes-template" type="text/x-handlebars-template">  
+    {{#each this}}
+    <div class="card">
+
+            <div class="card-header">
+                <p>ID: {{this.idMeal}}</p> 
+                <button class="favorites" >Add favorites</button>
+            </div>
+
+        
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5> 
+                <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">  
                 <ul class="list-group list-group-horizontal">
                     {{#each this.ingredients}}
                     <li class="list-group-item">{{this}}</li>
                     {{/each}}
+                </ul>
             </div>
 
-            <div class="card-footer">
-                <a href="{{this.href}}" class="card-link">Recipe Video</a>
-            </div>
+        <div class="card-footer">
+            <a href="{{this.href}}" class="card-link">Recipe Video</a>
         </div>
-        {{/each}}
-
-
-    </script>
+        
+    </div>
+    {{/each}}
+</script>
     
     
 </div>
@@ -55,6 +100,9 @@
     
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.2/dist/handlebars.min.js"></script>
+<script src="controllerRecipes.js"></script>
+<script src="viewRecipes.js"></script>
+<script src="modelRecipes.js"></script>
 <script src="main.js"></script>
 </body>
 
