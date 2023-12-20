@@ -13,14 +13,19 @@
 </head>
 
 <body>
-    
+    <div class="dropdown">
+        <button class="dropbtn">buy list</button>
+        <div class="dropdown-content" id="dropdown-content">
+            <div id="shopping"></div>
+        </div>
+    </div>
 <div class="container mt-3">
 
     <h1 class="display-1">Search and Remember</h1>
 
-    <div class="body container mt-3">
+    <div class="body container mt-3" >
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="look for recipes?"  id="input-recipes-ingredient"  >
+            <input type="text" value="cheese" class="form-control" placeholder="look for recipes?"  id="input-recipes-ingredient"  >
             <button class="btn btn-outline-secondary"  onclick="controller.getRecipesByIngredient()">Search for Recipes</button>
         </div>  
     </div>    
@@ -41,8 +46,12 @@
     </div>
 
 
-
-<div id="shoping"></div>
+<!-- <div class="dropdown">
+    <button class="dropbtn">buy list</button>
+    <div class="dropdown-content">
+    <a><div id="shopping" ></div></a>
+</div>
+</div> -->
 <br><br>
     
 
@@ -59,7 +68,7 @@
     
     
     
-<div id="recipes"></div>
+<div id="recipes" ></div>
 
     
 <script id="recipes-template" type="text/x-handlebars-template">  

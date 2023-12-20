@@ -26,7 +26,10 @@ class Model {
             })
     
             resolve(filteredRecipes)
-        })        
+        }).catch((error)=>
+        {
+            reject(error)
+        })       
     })
     }
 
