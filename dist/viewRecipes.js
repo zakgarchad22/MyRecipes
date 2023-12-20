@@ -25,6 +25,8 @@ renderShopping()
     const dropdownContent = $('#dropdown-content')
     if (this.shoppingItems.length === 0) {
         dropdownContent.hide()
+        this.$htmlShopping.empty()
+      
         
     } 
     else 
@@ -47,6 +49,7 @@ itemToRemember()
     const itemIndex = this.shoppingItems.indexOf(itemText) 
     if(itemIndex === -1)
     {
+    $item.css('color','red')
     this.shoppingItems.push(itemText)
     }
     this.renderShopping()
@@ -75,19 +78,27 @@ myFavorite()
 }
 
 deleteItem() {
+    const dropdownContent = $('#dropdown-content')
     this.$htmlShopping.on('click', '.delete-item', (event) => {
     const $item = $(event.currentTarget)
     const itemToDelete = $item.data('item')
     this.shoppingItems = this.shoppingItems.filter(item => item !== itemToDelete)
     $item.closest('li').remove()
+    this.$htmlRecipes.find(`.list-group-item:contains('${itemToDelete}')`).css('color', 'black')
     this.renderShopping()
+    if (this.shoppingItems.length === 0) {
+        dropdownContent.hide()
+        
+        
+    } 
     })
+
 }
 showBuyList() {
     
-    $('.dropbtn').on('click', (event) => {
-       
+    $('.buyList').on('click', (event) => {
         $('#dropdown-content').toggle()
+       
     })
 }
 
