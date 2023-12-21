@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -61,37 +62,45 @@
 </script>
     
     
-    
+ 
 <div id="recipes" ></div>
 
+
+
     
-<script id="recipes-template" type="text/x-handlebars-template">  
+<script id="recipes-template" type="text/x-handlebars-template"> 
     {{#each this}}
     <div class="card">
+        <div class="card-header">
+            <p>ID: {{this.idMeal}}</p> 
+            <div class="chef"> chef: {{this.nameChef}}</div> 
+            Stars:   
+           
+            {{#each this.randomStarArray}}
+            <span class="fa fa-star checked"></span>
+            {{/each}}
 
-            <div class="card-header">
-                <p>ID: {{this.idMeal}}</p> 
-                <button class="favorites" >Add favorites</button>
-            </div>
+          
+            <button class="favorites" >Add favorites</button>
+        </div>
 
-        
-            <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5> 
-                <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">  
-                <ul class="list-group list-group-horizontal">
-                    {{#each this.ingredients}}
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5> 
+            <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">  
+            <ul class="list-group list-group-horizontal">
+                {{#each this.ingredients}}
                     <li class="list-group-item">{{this}}</li>
-                    {{/each}}
-                </ul>
-            </div>
+                {{/each}}
+            </ul>
+        </div>
 
         <div class="card-footer">
             <a href="{{this.href}}" class="card-link">Recipe Video</a>
         </div>
-        
     </div>
     {{/each}}
 </script>
+
     
     
 </div>

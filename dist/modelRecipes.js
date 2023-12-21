@@ -4,6 +4,7 @@ class Model {
     {
         return $.get(`/recipes/ingredient/${ingredient}`)
             .then(response => {
+                
                 const filteredRecipes = response.filter(recipe => {
                     if (dairyChecked && glutenChecked) 
                     {

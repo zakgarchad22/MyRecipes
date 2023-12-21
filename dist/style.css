@@ -124,7 +124,13 @@ button.buyList {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-  
+  .checked {
+    color: orange;
+  }
+  .chef{
+    color: #04AA6D;
+    font-family: 'Open Sans';
+  }
  
  
 

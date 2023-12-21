@@ -2,10 +2,11 @@ class View
 {
     
 
-constructor($htmlRecipes , $htmlShopping) 
+constructor($htmlRecipes , $htmlShopping ) 
 {
     this.$htmlRecipes = $htmlRecipes
     this.$htmlShopping = $htmlShopping
+
     this.favorites = []
     this.shoppingItems = [] 
     this._init()  
@@ -21,15 +22,19 @@ _init(){
 
 render(filteredRecipes)
 {
+ 
+    
+    
     this.$htmlRecipes.empty()
     const source = $("#recipes-template").html()
     const template = Handlebars.compile(source)
-    const newHtml = template(filteredRecipes)
+    const newHtml = template(filteredRecipes )
     this.$htmlRecipes.append(newHtml)
 }
 
 renderShopping()
 {
+
     const dropdownContent = $('#dropdown-content')
     if (this.shoppingItems.length === 0) {
         dropdownContent.hide()
@@ -44,6 +49,8 @@ renderShopping()
     const template = Handlebars.compile(source)
     const newHtml = template({ items: this.shoppingItems })
     this.$htmlShopping.html(newHtml)
+
+
     }
 
 }

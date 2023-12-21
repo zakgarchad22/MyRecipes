@@ -24,7 +24,7 @@ getRecipesByIngredient = () =>
     .then(filteredRecipes => this.view.render(filteredRecipes))
     .catch((err) => 
     {
-        console.error("faild to fetch recipes",err)  
+        console.error("fail to fetch recipes",err)  
     })
     
       
