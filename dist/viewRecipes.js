@@ -7,9 +7,17 @@ constructor($htmlRecipes , $htmlShopping)
     this.$htmlRecipes = $htmlRecipes
     this.$htmlShopping = $htmlShopping
     this.favorites = []
-    this.shoppingItems = []   
+    this.shoppingItems = [] 
+    this._init()  
 }
+_init(){
+    this.clickPicAlert()
+    this.itemToRemember()
+    this.myFavorite()
+    this.deleteItem()
+    this.showBuyList() 
 
+}
 
 render(filteredRecipes)
 {
@@ -84,6 +92,7 @@ deleteItem() {
     const itemToDelete = $item.data('item')
     this.shoppingItems = this.shoppingItems.filter(item => item !== itemToDelete)
     $item.closest('li').remove()
+    //need to improve
     this.$htmlRecipes.find(`.list-group-item:contains('${itemToDelete}')`).css('color', 'black')
     this.renderShopping()
     if (this.shoppingItems.length === 0) {

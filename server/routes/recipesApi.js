@@ -7,27 +7,11 @@ const RECIPES_API = "https://recipes-goodness-elevation.herokuapp.com/recipes/in
 
 function filterSensitives(ingredients) 
 {
-    let hasDairy = false
-    let hasGluten = false
-    //for every ingredient 
-    ingredients.forEach((ingredient) => 
-    {
-      if (dairyIngredients.includes(ingredient)) {
-        hasDairy = true
-      }
-      if (glutenIngredients.includes(ingredient)){
-        hasGluten = true
-      }
- 
-    })
     return { 
-            hasDairy,
-            hasGluten 
-           }
-
+      hasDairy: ingredients.some(ingredient => dairyIngredients.includes(ingredient)),
+      hasGluten: ingredients.some(ingredient => glutenIngredients.includes(ingredient))
+    }
   }
-  
-
 
 router.get('/ingredient/:ingredient', (req, res) => {
 
@@ -47,6 +31,7 @@ router.get('/ingredient/:ingredient', (req, res) => {
                     hasGluten
                 }
             })
+
             res.send(specificRecipes)
         })  
 })
