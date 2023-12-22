@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 
@@ -55,11 +58,14 @@
         {{#each items}}
             <li class="shopping-item">
                 {{this}}
-                <button class="delete-item" data-item="{{this}}">&#x2714;  </button>
+                <a class="waves-effect waves-light btn delete-item" data-item="{{this}}">
+                    <i class="material-icons">delete</i>
+                </a>
             </li>
         {{/each}}
     </ul>  
 </script>
+
     
     
  
@@ -81,7 +87,9 @@
             {{/each}}
 
           
-            <button class="favorites" >Add favorites</button>
+            <button class="favorites" data-item="{{this}}">Add to favorites
+                <i class="material-icons left">favorite</i>
+            </button>
         </div>
 
         <div class="card-body">
@@ -109,7 +117,7 @@
     
     
     
-    
+<script type="text/javascript" src="js/materialize.min.js"></script>    
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.2/dist/handlebars.min.js"></script>
 <script src="controllerRecipes.js"></script>

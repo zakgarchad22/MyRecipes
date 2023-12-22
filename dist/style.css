@@ -58,8 +58,7 @@ h3 {
 }
 
 .favorites {
-    color:rgb(26, 104, 34);
-    align-items: right;
+
     cursor: pointer;
 }
 .card-header {
