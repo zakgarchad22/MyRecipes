@@ -10,13 +10,12 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 
 <body>
+    <div> </div>
     <div class="dropdown">
         <button class="buyList">buy list</button>
         <div class="dropdown-content" id="dropdown-content">
@@ -30,7 +29,7 @@
     <div class="body container mt-3" >
         <div class="input-group mb-3">
             <input type="text" value="cheese" class="form-control" placeholder="look for recipes?"  id="input-recipes-ingredient"  >
-            <button class="btn btn-outline-secondary"  onclick="controller.getRecipesByIngredient()">Search for Recipes</button>
+            <button class="btn btn-outline-secondary"  onclick="searchRecipes()">Search for Recipes</button>
         </div>  
     </div>    
   
@@ -59,7 +58,7 @@
             <li class="shopping-item">
                 {{this}}
                 <a class="waves-effect waves-light btn delete-item" data-item="{{this}}">
-                    <i class="material-icons">delete</i>
+                    delete
                 </a>
             </li>
         {{/each}}
@@ -74,32 +73,46 @@
 
 
     
-<script id="recipes-template" type="text/x-handlebars-template"> 
+<script id="recipes-template" type="text/x-handlebars-template">
     {{#each this}}
+    
     <div class="card">
+        <input type="button" onclick="location.href='mailto:someone@yoursite.com?subject=check out this recipe! Summer Pudding&body=you can see the recipe in this video :{{this.href}}';" value="Email Us" />
+        <button  class="delete-recipe" data-recipe-id="{{this.idMeal}}"> delete</button>
+        <div class="gif">
+        </div>
         <div class="card-header">
-            <p>ID: {{this.idMeal}}</p> 
-            <div class="chef"> chef: {{this.nameChef}}</div> 
-            Stars:   
-           
+            <p>ID: {{this.idMeal}}</p>
+            <div class="chef">Chef: {{this.nameChef}}</div>
+            
+            Stars:
             {{#each this.randomStarArray}}
             <span class="fa fa-star checked"></span>
             {{/each}}
-
-          
-            <button class="favorites" data-item="{{this}}">Add to favorites
-                <i class="material-icons left">favorite</i>
-            </button>
+            <button class="favorites" data-item="{{this}}">Add to favorites</button>
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5> 
-            <img src="{{this.thumbnail}}" class="card-img-top" alt="{{this.title}}">  
+            <h5 class="card-title">{{this.title}}</h5>
+            <iframe src={{this.gifUrl}} width="480" height="287" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/eating-cartoon-mouse-l1L2UkgpuiE4U">via GIPHY</a></p>
+
             <ul class="list-group list-group-horizontal">
                 {{#each this.ingredients}}
                     <li class="list-group-item">{{this}}</li>
                 {{/each}}
             </ul>
+        </div>
+
+        <div class="card-comments" id="comments-{{this.idMeal}}">
+            {{#each this.comments}}
+                <div class="comment">{{this.text}}  </div>
+                <button class="btn btn-danger delete-comment" data-recipe-id="{{../idMeal}}" data-comment-id="{{this.id}}">Delete</button>
+            
+            {{/each}}
+        </div>
+        <div class="card-comment-form">
+            <input type="text" class="comment-input" id="comment-input-{{this.idMeal}}" placeholder="Write a comment...">
+            <button class="btn btn-primary add-comment-button" data-recipe-id="{{this.idMeal}}">add comment</button>
         </div>
 
         <div class="card-footer">
@@ -117,12 +130,13 @@
     
     
     
-<script type="text/javascript" src="js/materialize.min.js"></script>    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.2/dist/handlebars.min.js"></script>
-<script src="controllerRecipes.js"></script>
-<script src="viewRecipes.js"></script>
-<script src="modelRecipes.js"></script>
+<script src="APIManager.js"></script>
+<script src="render.js"></script>
 <script src="main.js"></script>
 </body>
 

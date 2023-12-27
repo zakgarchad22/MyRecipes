@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use('/recipes', recipesApi)
 
-const port = 5000
+const port = 5001
 app.listen(port, function () {
     console.log(`Server running on ${port}`)
 })

@@ -23,10 +23,13 @@ h3 {
 
 .card {
     border-radius: 10px;
-    box-shadow: 1px 1px 3px black;
-    background-color: #fff;
     width: 40rem;
     margin-bottom: 1rem;
+   
+}
+.card-body {
+    background-color: #ffffff;
+
    
 }
 
@@ -62,6 +65,7 @@ h3 {
     cursor: pointer;
 }
 .card-header {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
